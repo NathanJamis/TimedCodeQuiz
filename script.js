@@ -1,18 +1,10 @@
-var quizContainer = document.getElementById('quiz')
-var scoreContainer = document.getElementById('score')
-var submitButton = document.getElementById('submit')
-var timerEl = document.getElementById('timer')
-
-
-// Begin quiz and start timer
-function startQuiz(){
-
-};
-
-// Timer function
-function timer() {
-    var 
-}
+var quizContainer = document.getElementById('quiz');
+var scoreContainer = document.getElementById('score');
+var startButton = document.getElementById('startQuiz');
+var timerEl = document.querySelector('.timer');
+var secondsLeft = 60;
+var score = 0;
+var highScores = [];
 
 // Question objects array
 var questions = [
@@ -68,11 +60,42 @@ var questions = [
     }
 ]
 
-// Show highscores list
-function showScore(){
+// Timer function
+function timer() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timerEl.textContent = "Time left: " + secondsLeft;
+        if (timeLeft = 0) {
+            clearInterval(timerInterval);
+            alert("You ran out of time!");
+        }
+    }, 1000);
+}
+
+// Begin quiz and start timer
+function startQuiz() {
+    startButton.addEventListener("click", function(event) {
+        if (secondsLeft < 60) {
+            event.preventDefault();
+        } else {
+            timerEl.textContent = "Time left: " + secondsLeft;
+            timer();
+            showQuestions();
+        }
+    });
+};
+
+// Display questions
+function showQuestions() {
 
 };
 
+// Submit score
+function submitScore() {
 
+};
 
-submitButton.addEventListener('click', showScore());
+// Show highscores list
+function showScore() {
+
+};
