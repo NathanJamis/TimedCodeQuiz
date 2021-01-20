@@ -1,10 +1,46 @@
-var quizContainer = document.getElementById('quiz');
-var scoreContainer = document.getElementById('score');
-var startButton = document.getElementById('startQuiz');
+var quizContainer = document.querySelector('.quiz');
+var scoreContainer = document.querySelector('.score');
+var startButton = document.querySelector('.startQuiz');
 var timerEl = document.querySelector('.timer');
 var secondsLeft = 60;
 var score = 0;
+var index = 0;
 var highScores = [];
+
+// Timer function
+function timer() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timerEl.textContent = "Time left: " + secondsLeft;
+        if (secondsLeft = 0) {
+            clearInterval(timerInterval);
+            alert("You ran out of time!");
+        }
+    }, 1000);
+}
+
+// Begin quiz and start timer
+function startQuiz() {
+    startButton.addEventListener("click", function(event) {
+        if (secondsLeft < 60) {
+            event.preventDefault();
+        } else {
+            timerEl.textContent = "Time left: " + secondsLeft;
+            timer();
+            showQuestions();
+        }
+    });
+};
+
+// Display questions
+function showQuestions() {
+    quizContainer.innerHTML = "<h2>" + questions[index].question + "</h2>";
+    quizContainer.style.textAlign = "left";
+    for (var i = 0; i < questions[index].choices.length; i++) {
+        document.querySelector("choiceButtons" + i).innerHTML = 
+        "<button type='button' class='btn btn-primary'>" + questions[index].choices[i] + "</button";
+    }
+};
 
 // Question objects array
 var questions = [
@@ -60,35 +96,6 @@ var questions = [
     }
 ]
 
-// Timer function
-function timer() {
-    var timerInterval = setInterval(function() {
-        secondsLeft--;
-        timerEl.textContent = "Time left: " + secondsLeft;
-        if (timeLeft = 0) {
-            clearInterval(timerInterval);
-            alert("You ran out of time!");
-        }
-    }, 1000);
-}
-
-// Begin quiz and start timer
-function startQuiz() {
-    startButton.addEventListener("click", function(event) {
-        if (secondsLeft < 60) {
-            event.preventDefault();
-        } else {
-            timerEl.textContent = "Time left: " + secondsLeft;
-            timer();
-            showQuestions();
-        }
-    });
-};
-
-// Display questions
-function showQuestions() {
-
-};
 
 // Submit score
 function submitScore() {
@@ -99,3 +106,5 @@ function submitScore() {
 function showScore() {
 
 };
+
+startQuiz()
