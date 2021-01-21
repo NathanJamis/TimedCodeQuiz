@@ -2,6 +2,9 @@ var quizContainer = document.querySelector('.quiz');
 var scoreContainer = document.querySelector('.score');
 var startButton = document.querySelector('.startQuiz');
 var timerEl = document.querySelector('.timer');
+var highScoreEL = document.querySelector('.highScores');
+var containerEl = document.querySelector('.container');
+var buttonsEl = document.querySelector('.choiceButtons');
 var secondsLeft = 60;
 var score = 0;
 var index = 0;
@@ -12,7 +15,7 @@ function timer() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
         timerEl.textContent = "Time left: " + secondsLeft;
-        if (secondsLeft = 0) {
+        if (secondsLeft <= 0) {
             clearInterval(timerInterval);
             alert("You ran out of time!");
         }
@@ -37,8 +40,8 @@ function showQuestions() {
     quizContainer.innerHTML = "<h2>" + questions[index].question + "</h2>";
     quizContainer.style.textAlign = "left";
     for (var i = 0; i < questions[index].choices.length; i++) {
-        document.querySelector("choiceButtons" + i).innerHTML = 
-        "<button type='button' class='btn btn-primary'>" + questions[index].choices[i] + "</button";
+        document.querySelector(".choices" + i).innerHTML = 
+        "<button type='button' class='btn btn-primary'>" + questions[index].choices[i] + "</button>";
     }
 };
 
