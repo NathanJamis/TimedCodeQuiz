@@ -11,7 +11,7 @@ var form = document.querySelector(".submitForm");
 var secondsLeft = 60;
 var score = 0;
 var index = 0;
-var highScores = [];
+var scores = [];
 var save = [];
 
 // Timer function
@@ -19,9 +19,9 @@ function timer() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
         timerEl.textContent = "Time left: " + secondsLeft;
-        if (secondsLeft <= 0) {
+        if (secondsLeft <= 0 || index === questions.length) {
             clearInterval(timerInterval);
-            alert("You ran out of time!");
+            //submitScore();
         }
     }, 1000);
 }
@@ -70,18 +70,14 @@ buttonsEl.addEventListener("click", function(event) {
 
 // Submit score
 function submitScore() {
+    document.querySelectorAll(".container")[2].style.display="block";
     quizContainer.innerHTML = "<h2>You're done!</h2><br>";
     buttonsEl.innerHTML = "Score: " + score + "." + "<br><br>";
-        var form = document.createElement("form");
-        document.body.appendChild(form);
         var initialsButton = document.querySelector(".submit");
         initialsButton.addEventListener("click", function(event) {
             event.preventDefault();
-            if (localStorage.getItem("user") !== null) {
-                scores = JSON.parse(localStorage.getItem("user"));
-            }
-            if (localStorage.getItem("score") !== null) {
-                scores = JSON.parse(localStorage.getItem("score"));
+            if (localStorage.getItem("user,score") !== null) {
+                scores = JSON.parse(localStorage.getItem("user,score"));
             }
             if (scores.length > 0) {
                 for (var b = 0; b < scores.length; b++) {
@@ -89,25 +85,25 @@ function submitScore() {
                 }
             }
 
-            var userInitials = document.querySelector(".initInput").nodeValue;
+            var userInitials = document.querySelector(".initials").value;
             var userScore = { userInitials, score};
 
             save.push(userScore);
 
-            localStorage.setItem("user,score", JSON.stringify(save));
+            localStorage.setItem("userScore", JSON.stringify(save));
             showScore();
         });
 
 };
-
 // Show highscores list
 function showScore() {
     document.querySelectorAll(".container")[2].style.display="none";
     containerEl.innerHTML = "<h2>High Scores:</h2><br>";
     for (var a = 0; a < save.length; a++) {
         var scoreList = document.createElement("div");
-        scoreList.textContent = save[a].userInitials + " " + "  Score: " + save[a].score;
+        scoreList.textContent = "User: " + save[a].userInitials + "    " + "  Score: " + save[a].score;
         containerEl.appendChild(scoreList);
+        document.getElementById("buttons").style.display="none";
     }
 };
 
