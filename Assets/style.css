@@ -1,0 +1,14 @@
+body {
+    
+}
+.timer {
+    float:right;
+}
+.quiz {
+    margin-top: 50px;
+    padding: auto;
+    text-align: center;
+}
+.buttonStyle {
+    padding: 3px;
+}
