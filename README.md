@@ -10,4 +10,9 @@
 * Their initials are then placed in a high score leaderboard with their score in the same line.
 ---
 ## Below are visuals of the web page:
- 
+![screenshot](https://github.com/NathanJamis/TimedCodeQuiz/blob/main/Assets/screenshot.png)
+---
+![gif](https://github.com/NathanJamis/TimedCodeQuiz/blob/main/Assets/CodingQuiz.gif)
+---
+## Link to deployed application:
+[Timed Coding Quiz](https://nathanjamis.github.io/TimedCodeQuiz/)
